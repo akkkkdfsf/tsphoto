@@ -12,28 +12,14 @@ set "commit_date=%year%%month%%day%"
 REM 进入项目目录
 cd /d "C:\Users\ASUS\Desktop\墨西哥t完整发布\图片处理\轮播图"
 
-REM 清理旧历史记录 (关键步骤)
-REM 1. 创建新的孤立分支
-git checkout --orphan latest_branch
-
-REM 2. 添加所有文件到新分支
+REM 添加所有文件到暂存区
 git add --all
 
-REM 3. 提交更改
-git commit -am "%commit_date%"
+REM 提交更改
+git config --local i18n.commitencoding UTF-8
+git commit -m "%commit_date%"
 
-REM 4. 删除主分支
-git branch -D master
-
-REM 5. 重命名当前分支为主分支
-git branch -m master
-
-REM 6. 强制推送到远程仓库 (覆盖历史)
-git push -f origin master
-
-REM 7. 清理不必要的文件和历史
-git for-each-ref --format="%(refname)" refs/original/ | for /f "delims=" %%i in ('git for-each-ref --format="%(refname)" refs/original/') do git update-ref -d %%i
-git reflog expire --expire=now --all
-git gc --aggressive --prune=now
+REM 推送到远程
+git push origin master
 
 endlocal
