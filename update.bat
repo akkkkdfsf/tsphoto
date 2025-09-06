@@ -10,7 +10,7 @@ set "day=!datetime:~6,2!"
 set "commit_date=%year%%month%%day%"
 
 REM 进入项目目录
-cd /d "C:\Users\ASUS\Desktop\墨西哥t完整发布\图片处理\轮播图"
+cd /d "C:\Users\ASUS\Desktop\TS墨西哥完整发布\图片处理\轮播图"
 
 REM 添加所有文件到暂存区
 git add --all
